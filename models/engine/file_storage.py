@@ -130,3 +130,16 @@ class FileStorage:
         finally:
             inst.updated_at = datetime.utcnow()
             self.save()
+            
+    def reset(self):
+        """Resets the storage system to a clean state"""
+        # Clear all objects from memory
+        FileStorage.__objects.clear()
+        
+        # Optionally, delete the storage file or clear its content
+        try:
+            with open(FileStorage.__file_path, "w") as f:
+                f.write("{}")  # Write an empty JSON object to the file
+        except IOError as e:
+            # Handle file errors, e.g., permission issues, file not found, etc.
+            print(f"Error resetting storage file: {e}")
