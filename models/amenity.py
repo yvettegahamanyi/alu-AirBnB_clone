@@ -1,15 +1,14 @@
 #!/usr/bin/python3
+
+"""This file defines the Amenity Model
+It inherits from the BaseModel
 """
-Module for Amenity class
-"""
+
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """Custom amenity class
+    """The Amenity Model"""
 
-    Varibles:
-        name(str): amenity name
-
-    """
+    # Attributes
     name = ""

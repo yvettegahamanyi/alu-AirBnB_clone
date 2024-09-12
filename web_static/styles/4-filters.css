@@ -1,30 +1,27 @@
-/* Styling for filter and search button */
-
-section.filters {
-    background-color: white;
+.filters {
+    color: #fff;
     height: 70px;
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    margin: auto;
-    position: relative;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-/* Styling for button in filter class div */
-
-section.filters button {
+button {
     font-size: 18px;
     background-color: #FF5A5F;
-    color: #FFFFFF;
-    height: 48px;
+    color:  #FFFFFF;
+    height: 45px;
     width: 20%;
-    border: 0px;
     border-radius: 4px;
-    margin: auto 30px auto auto;
+    border-style: none;
     float: right;
+    margin-right: 30px;
+
 }
 
-section.filters button:hover {
+button:hover {
     opacity: 90%;
 }

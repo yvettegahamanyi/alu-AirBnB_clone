@@ -1,18 +1,15 @@
 #!/usr/bin/python3
+
+"""This file defines the State Model
+It inherits from the BaseModel
 """
-Definititon of state class
-"""
+
 
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """
-    Definition of  data describing state, it inherits from BaseModel class
+    """The State Model"""
 
-
-    Variables:
-        name (string): Users last name.
-    """
-
+    # Attributes
     name = ""
