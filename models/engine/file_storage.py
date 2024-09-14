@@ -1,13 +1,6 @@
-#!/usr/bin/python3
-"""
-This File defines the storage system (File System)
-For the project.
-It uses json format to serialize or deserialize
-an object"""
-
 import json
 from json.decoder import JSONDecodeError
-from .errors import *
+from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -15,13 +8,12 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from datetime import datetime
+from .errors import ModelNotFoundError, InstanceNotFoundError
 
 
 class FileStorage:
-    """This class serve as an ORM to interface between or Storage System"""
+    """This class serves as an ORM to interface between our Storage System"""
 
-    # class private variables
     __objects = {}
     __file_path = "file.json"
     models = (
@@ -61,7 +53,7 @@ class FileStorage:
             FileStorage.__objects = {
                 key:
                     eval(obj["__class__"])(**obj)
-                    for key, obj in deserialized.items()}
+                for key, obj in deserialized.items()}
         except (FileNotFoundError, JSONDecodeError):
             # No need for error
             pass
@@ -130,12 +122,12 @@ class FileStorage:
         finally:
             inst.updated_at = datetime.utcnow()
             self.save()
-            
+
     def reset(self):
         """Resets the storage system to a clean state"""
         # Clear all objects from memory
         FileStorage.__objects.clear()
-        
+
         # Optionally, delete the storage file or clear its content
         try:
             with open(FileStorage.__file_path, "w") as f:

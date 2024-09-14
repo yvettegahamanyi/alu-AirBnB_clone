@@ -1,15 +1,13 @@
 #!/usr/bin/python3
 
-"""This file defines the UserModel class
-It inherits from the BaseModel
-"""
+"""User model"""
 
 
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """The User Model"""
+    """User model"""
 
     # Attributes
     email = ""

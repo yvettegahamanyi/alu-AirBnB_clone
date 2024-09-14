@@ -8,7 +8,6 @@ from cmd import Cmd
 from models import storage
 from models.engine.errors import *
 import shlex
-from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
@@ -18,7 +17,15 @@ from models.review import Review
 
 
 # Global variable of registered models
-classes = storage.models
+# classes = storage.models
+classes = {
+    "State": State,
+    "City": City,
+    "Place": Place,
+    "User": User,
+    "Review": Review,
+    "Amenity": Amenity,
+}
 
 
 class HBNBCommand(Cmd):
@@ -39,29 +46,47 @@ class HBNBCommand(Cmd):
         return True
 
     def do_create(self, args):
-        """Create an instance of Model given its name eg.
-        $ create ModelName
-        Throws an Error if ModelName is missing or doesnt exist"""
-        args, n = parse(args)
+        """Create an instance of Model and optionally pass attributes in key=value format.
+        Example:
+        $ create State name="California"
+        """
+        args, n = parse(args)  # Assuming parse splits the command arguments
 
         if not n:
             print("** class name missing **")
-        elif args[0] not in classes:
+            return
+        if args[0] not in classes:
             print("** class doesn't exist **")
-        elif n == 1:
-            # temp = classes[args[0]]()
-            temp = eval(args[0])()
-            print(temp.id)
-            temp.save()
-        else:
-            print("** Too many argument for create **")
-            pass
+            return
+
+        # Create a new instance of the given class
+        obj_class = classes[args[0]]
+        new_instance = obj_class()
+
+        # If there are additional arguments (key=value pairs), set the attributes
+        if n > 1:
+            for arg in args[1:]:
+                if "=" in arg:
+                    key, value = arg.split("=", 1)
+
+                    # Strip quotes from the value if provided (e.g., name="California")
+                    value = value.strip('"').strip("'")
+
+                    # Only set the attribute if it exists on the class
+                    if hasattr(new_instance, key):
+                        setattr(new_instance, key, value)
+                    else:
+                        print(f"** attribute '{key}' is not valid for {args[0]} **")
+                        return
+
+        # Save the instance and show its id
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
-        """Show an Instance of Model base on its ModelName and id eg.
-        $ show MyModel instance_id
-        Print error message if either MyModel or instance_id is missing
-        Print an Error message for wrong MyModel or instance_id"""
+        """Show an Instance of Model base on its ModelName and id
+        Example:
+        $ show MyModel instance_id"""
         args, n = parse(arg)
 
         if not n:
