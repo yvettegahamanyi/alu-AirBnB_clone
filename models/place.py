@@ -1,15 +1,13 @@
 #!/usr/bin/python3
 
-"""This file defines the Place Model
-It inherits from the BaseModel
-"""
+"""Place model"""
 
 from models.base_model import BaseModel
 from typing import List
 
 
 class Place(BaseModel):
-    """The Place Model"""
+    """Place model"""
 
     # Attributes
     city_id = ""
