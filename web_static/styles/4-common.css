@@ -1,0 +1,19 @@
+/* Global styling for html doc */
+
+body {
+    padding: 0px;
+    margin: 0px;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Styling for first container div */
+
+.container {
+    background-color: white;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding-bottom: 40px;
+    text-align: center;
+}

@@ -1,0 +1,25 @@
+/* Styling for places as listing */
+
+section.places {
+    display: block;
+}
+
+section.places h1 {
+    display: block;
+    font-size: 30px;
+    text-align: left;
+}
+
+section.places article {
+    display: inline-block;
+    width: 390px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    text-align: center;
+}
+
+section.places h2 {
+    font-size: 30px;
+}

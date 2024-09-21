@@ -1,0 +1,11 @@
+/* Styling for doc footer */
+
+footer{
+      height: 60px;
+      width:100%;
+      background-color: #00FF00;
+      bottom: 0px;
+      text-align: center;
+      position: absolute;
+      vertical-align: middle;
+  }
